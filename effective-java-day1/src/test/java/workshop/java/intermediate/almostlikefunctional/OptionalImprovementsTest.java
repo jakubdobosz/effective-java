@@ -16,9 +16,9 @@ public class OptionalImprovementsTest {
     public void or() throws Exception {
         Optional<Object> o = Optional.empty();
 
-        o.or(() -> Optional.of("ok"));
+        Optional<Object> hi = o.or(() -> Optional.of("Hi"));
 
-        assertThat(o).hasValue("Hi");
+        assertThat(hi).hasValue("Hi");
     }
 
     @Test

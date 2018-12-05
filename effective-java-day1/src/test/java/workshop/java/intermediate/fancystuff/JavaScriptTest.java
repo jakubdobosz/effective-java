@@ -1,5 +1,6 @@
 package workshop.java.intermediate.fancystuff;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import workshop.java.intermediate.boilerplatefree.ExampleMovies;
 import workshop.java.intermediate.boilerplatefree.Movie;
@@ -17,6 +18,7 @@ import static workshop.java.intermediate.almostlikefunctional.$ExitTest.Try.tryI
 /**
  *
  */
+@Disabled
 public class JavaScriptTest {
 
     private ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
