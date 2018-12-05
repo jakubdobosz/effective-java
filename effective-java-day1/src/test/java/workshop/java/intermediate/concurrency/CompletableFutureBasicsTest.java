@@ -1,11 +1,13 @@
 package workshop.java.intermediate.concurrency;
 
 import org.junit.jupiter.api.Test;
+import workshop.java.intermediate.boilerplatefree.ExampleMovies;
+import workshop.java.intermediate.boilerplatefree.Movie;
 
 import java.time.Duration;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
@@ -14,6 +16,34 @@ import static org.awaitility.Awaitility.await;
  *
  */
 public class CompletableFutureBasicsTest {
+
+    Executor IO = Executors.newCachedThreadPool();
+
+    @Test
+    void playWithCompletableFuture() {
+        List<Movie.MovieBuilder> database = ExampleMovies.allMovies();
+
+        CompletableFuture.supplyAsync(() -> database.stream().count(), IO)
+                .thenCombine(
+                        CompletableFuture.supplyAsync(() -> fetchData(database), IO)
+                                .thenApplyAsync(
+                                        this::createTransportObject,
+                                        ForkJoinPool.commonPool()),
+                        this::createPage
+                ).join();
+    }
+
+    private Object createPage(Long count, List<Movie> data) {
+        return null;
+    }
+
+    private List<Movie.MovieBuilder> fetchData(List<Movie.MovieBuilder> database) {
+        return database.stream().collect(Collectors.toList());
+    }
+
+    private List<Movie> createTransportObject(List<Movie.MovieBuilder> movieBuilders) {
+        return movieBuilders.stream().map(Movie.MovieBuilder::build).collect(Collectors.toList());
+    }
 
     @Test
     public void runTask() throws Exception {
