@@ -1,5 +1,6 @@
 package workshop.java.intermediate.almostlikefunctional;
 
+import lombok.NonNull;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -39,8 +40,7 @@ public class BasicsLambdaTest {
 
     @Test
     public void lambda() throws Exception {
-        Comparator<String> insensitive = (o1, o2) -> {
-            return o1.toLowerCase().compareTo(o2.toLowerCase());
+        Comparator<String> insensitive = (o1, o2) -> { return o1.toLowerCase().compareTo(o2.toLowerCase());
         };
 
         String[] arr = {"Orange", "apple", "strawberry"};
@@ -53,6 +53,20 @@ public class BasicsLambdaTest {
     @Test
     public void expressionLambda() throws Exception {
         Comparator<String> insensitive = (o1, o2) ->
+                o1.toLowerCase().compareTo(o2.toLowerCase());
+        // note: type inference requires typed target reference
+
+        String[] arr = {"Orange", "apple", "strawberry"};
+
+        Arrays.sort(arr, insensitive);
+
+        Assertions.assertThat(arr)
+                .containsExactly("apple", "Orange", "strawberry");
+    }
+
+    @Test
+    public void expressionLambdaWithVar() throws Exception {
+        Comparator<String> insensitive = (@NonNull var o1, var o2) ->
                 o1.toLowerCase().compareTo(o2.toLowerCase());
         // note: type inference requires typed target reference
 

@@ -11,7 +11,7 @@
 
     <modules>
         <module>effective-java-day1</module>
-        <!--<module>effective-java-day2</module>-->
+        <module>effective-java-day2</module>
         <!--<module>effective-java-day3</module>-->
     </modules>
 

@@ -21,7 +21,7 @@ public class ExampleMovies {
     public static final Function<String, LocalDate> parseReleased = s -> LocalDate.parse(s, formatter);
     public static final Function<String, Duration> parseRuntime = s -> Duration.ofMinutes(Integer.valueOf(s.replace(" min", "")));
 
-    public static List<Movie.MovieBuilder> allMovies() throws Exception {
+    public static List<Movie.MovieBuilder> allMovies() {
                 return asList(
                         tt0266697()
                 ,

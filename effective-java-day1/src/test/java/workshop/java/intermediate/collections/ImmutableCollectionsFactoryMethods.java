@@ -49,7 +49,6 @@ public class ImmutableCollectionsFactoryMethods {
 
     @Test
     public void mapOfFactoryMethod() throws Exception {
-
         // interfaces of all collections in java allow to modify entries
         // we dont need to wrap it if we want prevent further modifications of that list
         Map<String, Integer> unmodifiable = Map.of("some", 1, "some other", 2);

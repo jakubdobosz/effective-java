@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;
 
-public class MakeOwnSpringTest {
+public class PlayWithThreadLocalAndProxy {
 
     private static final ThreadLocal<TransactionContext> threadLocal = new ThreadLocal<>();
 
@@ -25,7 +25,8 @@ public class MakeOwnSpringTest {
                     boolean shouldCloseTransaction = false;
                     if (transaction == null) {
                         shouldCloseTransaction = true;
-                        threadLocal.set(TransactionContext.beginTransaction());
+                        transaction = TransactionContext.beginTransaction();
+                        threadLocal.set(transaction);
                     }
                     try {
                         Object value = method.invoke(object, args);

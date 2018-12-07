@@ -32,7 +32,7 @@ public class JavaScriptTest {
 
         return movie -> tryIt(() ->
                 (boolean) invocable.invokeFunction(predicate, movie)
-        ).getUnchecked();
+        ).getOrThrowUnchecked();
     }
 
     @Test

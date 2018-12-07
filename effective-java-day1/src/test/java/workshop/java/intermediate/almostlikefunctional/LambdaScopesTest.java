@@ -41,7 +41,7 @@ public class LambdaScopesTest {
                 .isEqualTo(now.getYear());
 
         // must be final or implicitly final
-        //now = LocalDate.of(2015, Month.DECEMBER, 24);
+        // now = LocalDate.of(2015, Month.DECEMBER, 24);
     }
 
     @Test
@@ -73,18 +73,19 @@ public class LambdaScopesTest {
         LocalDate now = LocalDate.now();
         Supplier<Integer> year = now::getYear;
         // but check that:
-        //Supplier<Integer> year = () -> today.getYear();
+        //  Supplier<Integer> year = () -> today.getYear();
+        //Supplier<Integer> year = today::getYear;
 
         assertThat(year.get())
                 .isGreaterThanOrEqualTo(2016)
                 .isEqualTo(now.getYear());
 
         now = LocalDate.of(2015, Month.DECEMBER, 24);
-        //today = LocalDate.of(2015, Month.DECEMBER, 24);
+//        today = LocalDate.of(2015, Month.DECEMBER, 24);
 
         assertThat(year.get())
                 .isGreaterThanOrEqualTo(2016);
-                //.isEqualTo(2015);
+//                .isEqualTo(2015);
         System.out.println(now);
     }
 
@@ -109,6 +110,13 @@ public class LambdaScopesTest {
                 return price -> price;
             default:
                 throw new IllegalArgumentException("unsupported " + region);
+        }
+    }
+
+    private class IntegerSupplier implements Supplier<Integer> {
+        @Override
+        public Integer get() {
+            return today.getYear();
         }
     }
 }

@@ -116,8 +116,9 @@ public class OptionalTest {
     @Test
     public void flatMap() throws Exception {
         Optional<String> optional = Optional.empty();
+        Optional<String> trimmedOptional = optional.map(value -> value.trim());
 
-        Optional<Integer> integer = optional
-                .flatMap((value) -> Optional.of(value.length()));
+        Optional<Optional<Integer>> integer = optional
+                .map((value) -> Optional.of(value.length()));
     }
 }

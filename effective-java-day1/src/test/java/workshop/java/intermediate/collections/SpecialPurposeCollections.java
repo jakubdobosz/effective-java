@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import workshop.java.intermediate.boilerplatefree.Movie;
 
+import java.lang.ref.WeakReference;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -75,6 +76,7 @@ public class SpecialPurposeCollections {
     @Test
     public void weakMap() throws Exception {
         WeakHashMap<Object, String> weakMap = new WeakHashMap<>();
+
         weakMap.put(new Object(), "");
 
         while (!weakMap.isEmpty()) {

@@ -2,7 +2,10 @@ package workshop.java.intermediate.almostlikefunctional;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.function.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class FunctionalInterfacesTest {
 
@@ -57,6 +60,11 @@ public class FunctionalInterfacesTest {
 
         IntUnaryOperator intUnaryOperator = (int operand) -> operand / 2;
         IntBinaryOperator intBinaryOperator = (int left, int right) -> left;
+
+        IntStream intStream = List.of(1, 2, 3, 4, 5)
+                .stream()
+                .mapToInt(Integer::intValue)
+                ;
     }
 
     @Test

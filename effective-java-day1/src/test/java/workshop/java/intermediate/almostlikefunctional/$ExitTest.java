@@ -30,6 +30,10 @@ public class $ExitTest {
 
     public interface Try<T> {
 
+        static <Input> Supplier<Try<Input>> supplier(ThrowingSupplier<Input> supplier) {
+            return () -> tryIt(supplier);
+        }
+
         static <Input> Try<Input> tryIt(ThrowingSupplier<Input> supplier) {
             // TODO try implement as Sealed classes if you can
             return null;
@@ -41,9 +45,9 @@ public class $ExitTest {
 
         Optional<T> getOptional();
 
-        T getThrowing() throws Throwable;
+        T getOrThrow() throws Throwable;
 
-        T getUnchecked();
+        T getOrThrowUnchecked();
 
         T orElse(T def);
 
@@ -84,7 +88,7 @@ public class $ExitTest {
 
         Assertions.assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(
-                        aTry::getUnchecked
+                        aTry::getOrThrowUnchecked
                 )
         ;
     }
