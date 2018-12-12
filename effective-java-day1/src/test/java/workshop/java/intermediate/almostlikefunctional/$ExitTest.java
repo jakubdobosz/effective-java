@@ -41,6 +41,8 @@ public class $ExitTest {
 
         boolean isSuccess();
 
+        T recover(Function<? super Throwable, T> f);
+
         T getNullable();
 
         Optional<T> getOptional();
@@ -51,7 +53,7 @@ public class $ExitTest {
 
         T orElse(T def);
 
-        T orElseGe(Supplier<T> defSupplier);
+        T orElseGet(Supplier<T> defSupplier);
 
         <U> Try<U> map(Function<T, U> f);
 
@@ -116,12 +118,5 @@ public class $ExitTest {
 
         Assertions.assertThat(s1).hasValue("slow processed string");
     }
-
-    // Task 2.
-    // write ObservableValue class
-    // implement set and get methods
-    // implement map, filter, consume methods
-    // implement map, filter, consume variant-'Bi' taking old and new values
-    // implement combine(BiFunction<T, ObservableValue<U>, R> f)
 
 }

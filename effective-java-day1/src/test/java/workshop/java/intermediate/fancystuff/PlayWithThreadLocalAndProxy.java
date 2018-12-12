@@ -1,4 +1,4 @@
-package workshop.java.intermediate;
+package workshop.java.intermediate.fancystuff;
 
 import org.junit.jupiter.api.Test;
 
